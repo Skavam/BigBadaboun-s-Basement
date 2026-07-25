@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigBadaboun's Basement</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="win95-window intro-window" id="win-intro">
+    <div class="title-bar" data-drag>
+      <span class="title-bar-text">Welcome.txt</span>
+      </div>
+    </div>
+    <div class="window-body intro-body">
+      <p class="intro-title">Hi, I'm BigBadaoun! or Bastien :D</p>
+      <p>This is just a website I made for fun... Just want to show some cool stuff I did/have and yeah that's about it! Also a lil bit about me (Last update: 7/20/26)</p>
+    </div>
+  </header>
+
+  <section class="win95-window" id="win-builds">
+    <div class="title-bar" data-drag>
+      <span class="title-bar-text">Nerdy stuff with a Ryuk Figurine :P.txt</span>
+      </div>
+    </div>
+    <div class="window-body">
+      <p class="section-intro">When I have the money for it and the time I like to buy PC stuff, clean them, repair them and see how they can perform and sometimes It's surprisingly powerful!</p>
+      <div class="gallery">
+        <figure class="polaroid">
+          <img src="assets/20250811_132937.jpg" alt="White PC case with tempered glass side panel showing internal components">
+          <figcaption>RTX 2060 6GB unmounted (blower model)</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/IMG_0203.jpg" alt="Gigabyte motherboard with Intel CPU cooler installed">
+          <figcaption>One of my PC with the legendary Corsair C70 case! (I love it sooo much)</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/IMG_0130.jpg" alt="Gigabyte GA-H110-D3A motherboard, bare">
+          <figcaption>Ryuk! I love Ryuk and death note :3</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/20250822_145407.jpg" alt="Disassembled ASUS graphics card showing GPU die and heatsink">
+          <figcaption>A RX 580 2048SP 8GB I got from amazon</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/20250607_160044.jpg" alt="White graphics card with dual fans in packaging">
+          <figcaption>The biggest drive I ever had! It was fun while I had it</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/Capture.PNG" alt="Black Radeon graphics card with dual fans">
+          <figcaption>This is a GTX 1660 Super!</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/20250721_205602.jpg" alt="Graphics card disassembled on a wooden table with screwdriver">
+          <figcaption>This is a very old board with DDR3 and a i5 4590S</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="assets/20250726_192119.jpg" alt="Open PC case showing internal wiring and components">
+          <figcaption>This is another old board but not as ancient as the other one, it also had an i7 7700</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="win95-window" id="win-awareness">
+    <div class="title-bar" data-drag>
+      <span class="title-bar-text">Awareness.txt</span>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="ribbon-row">
+        <figure class="ribbon-figure">
+          <img src="assets/adhd-removebg-preview.png" alt="Orange ADHD awareness ribbon">
+          <figcaption>ADHD awareness</figcaption>
+        </figure>
+        <figure class="ribbon-figure">
+          <img src="assets/Autism_Awareness_Ribbon.png" alt="Multicolor puzzle piece autism awareness ribbon">
+          <figcaption>Autism awareness</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="win95-window footer-window">
+    <div class="title-bar" data-drag>
+      <span class="title-bar-text">Aboutme.txt</span>
+    </div>
+    <div class="window-body">
+      <p>Hey! I'm Bastien, of "known" as BigBadaboun and other usernames on the internet. I'm French Canadian and I love computers, math, drawing; horror stuff and much more!</p>
+      <p>I actually started this website just for fun, I just wanted a place where I can show stuff to people (Even if nobody look at my website at least I have my lil place)</p>
+      <p>Sometimes I just enjoy doing random stuff and well this website is part of it</p>
+      <p>I always wanted to work in IT but to be honest since AI came up I feel like it's too risky for not much so I went in medicine instead!</p>
+      <p>I always wanted to help people so I guess it matches me... OH! I also love FOSS stuff :D</p>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("[data-drag]").forEach((titleBar) => {
+      const win = titleBar.closest(".win95-window");
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let baseLeft = 0;
+      let baseTop = 0;
+
+      titleBar.addEventListener("mousedown", (e) => {
+        if (e.target.tagName === "BUTTON") return;
+        isDragging = true;
+        const rect = win.getBoundingClientRect();
+        startX = e.clientX;
+        startY = e.clientY;
+        baseLeft = rect.left;
+        baseTop = rect.top;
+        win.style.position = "fixed";
+        win.style.left = `${baseLeft}px`;
+        win.style.top = `${baseTop}px`;
+        win.style.margin = "0";
+        win.style.zIndex = "10";
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        win.style.left = `${baseLeft + (e.clientX - startX)}px`;
+        win.style.top = `${baseTop + (e.clientY - startY)}px`;
+      });
+
+      document.addEventListener("mouseup", () => {
+        isDragging = false;
+      });
+    });
+  </script>
+</body>
+</html>
